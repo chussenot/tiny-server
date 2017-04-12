@@ -35,9 +35,4 @@ be rebuilt with cgo disabled.
 Now we have a static binary with only 6.75MB
 
 To build and test just run `make install` then `make run`
-and `curl http://localhost:1323` in an another shell.
-
-
-
-
-
+and `curl http://localhost:80` in an another shell.

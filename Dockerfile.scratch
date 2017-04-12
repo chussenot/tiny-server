@@ -1,4 +1,4 @@
 FROM scratch
 ADD main /
-EXPOSE 1323
+EXPOSE 80
 CMD ["/main"]
