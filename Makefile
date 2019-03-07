@@ -1,5 +1,5 @@
 IMAGE=chussenot/tiny-server
-VERSION=0.1
+TRAVIS_TAG:=0.1
 
 build:
 	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
@@ -18,5 +18,5 @@ test: install
 
 push:
 	docker push ${IMAGE}
-	docker tag ${IMAGE} ${IMAGE}:${VERSION}
-	docker push ${IMAGE}:${VERSION}
+	docker tag ${IMAGE} ${IMAGE}:${TRAVIS_TAG}
+	docker push ${IMAGE}:${TRAVIS_TAG}
