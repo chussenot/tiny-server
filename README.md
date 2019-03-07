@@ -38,7 +38,7 @@ But the server is as well release in a docker image.
 
 The idea is to build a minimal docker container (6.75 MB) for this go application,
 that always return 200 HTTP codes to help you to build your healthchecks
-ib your orchestrator solutions.
+in your orchestrator solutions.
 ```
 # chussenot @ laptop in ~ [0:02:03]
 $ docker images | head
