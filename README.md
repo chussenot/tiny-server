@@ -1,6 +1,8 @@
 Simple HTTP server in a tiny container
 ======================================
 
+[![Docker chussenot/tiny-server Pulls](https://img.shields.io/docker/pulls/chussenot/tiny-server.svg?label=docker%20pulls%20chussenot/tiny-server)](https://hub.docker.com/r/chussenot/tiny-server/)
+
 [TinyServer on Docker Hub](https://hub.docker.com/r/chussenot/tiny-server/)
 
 This exemple use Echo,
