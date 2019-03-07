@@ -13,8 +13,8 @@ run: build package
 install:
 	go get -u github.com/labstack/echo
 
-test:
-	http://localhost:1323/health-check
+test: install
+	go test -v ./...
 
 push:
 	docker push ${IMAGE}
