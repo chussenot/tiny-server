@@ -2,17 +2,45 @@ Simple HTTP server in a tiny container
 ======================================
 
 [![Docker chussenot/tiny-server Pulls](https://img.shields.io/docker/pulls/chussenot/tiny-server.svg?label=docker%20pulls%20chussenot/tiny-server)](https://hub.docker.com/r/chussenot/tiny-server/)
+[![Build Status](https://www.travis-ci.org/chussenot/tiny-server.svg?branch=master)](https://www.travis-ci.org/chussenot/tiny-server)
 
-[TinyServer on Docker Hub](https://hub.docker.com/r/chussenot/tiny-server/)
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-This exemple use Echo,
+Why?
+---
+
+Microservices-based applications often use heartbeats or health checks
+to enable their performance monitors, schedulers, and orchestrators
+to keep track of the multitude of services.
+
+If services cannot send some sort of “I’m alive” signal, either on demand
+or on a schedule, your application might face risks when you deploy updates,
+or it might just detect failures too late and not be able to stop cascading
+failures that can end up in major outages.
+
+How?
+----
+
+This server use Echo,
 the High performance, extensible, minimalist Go web framework
 https://echo.labstack.com/guide
 
-The idea is to build a minimal docker container for this go application
+Distribution
+------------
 
+You can compile directly the server with **Go**:
+
+`go build -o main`
+
+But the server is as well release in a docker image.
+
+`docker pull chussenot/tiny-server`
+
+The idea is to build a minimal docker container (6.75 MB) for this go application,
+that always return 200 HTTP codes to help you to build your healthchecks
+ib your orchestrator solutions.
 ```
-# chussenot @ macbook-air in ~ [0:02:03]
+# chussenot @ laptop in ~ [0:02:03]
 $ docker images | head
 REPOSITORY
 TAG              IMAGE ID            CREATED             SIZE
@@ -32,7 +60,7 @@ CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 ```
 
 We’re disabling cgo which gives us a static binary. We’re also setting the OS
-to Linux (in case someone builds this on a Mac or Windows) and the -a flag
+to Linux (in case someone builds this on a Mac or Windows or BSDs) and the -a flag
 means to rebuild all the packages we’re using, which means all the imports will
 be rebuilt with cgo disabled.
 
@@ -40,3 +68,8 @@ Now we have a static binary with only 6.75MB
 
 To build and test just run `make install` then `make run`
 and `curl http://localhost:80` in an another shell.
+
+Travis
+------
+
+The Travis CI service build and release the image on the Docker hub.

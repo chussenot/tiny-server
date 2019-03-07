@@ -1,0 +1,25 @@
+language: go
+go:
+- '1.11.5'
+
+services:
+  - docker
+
+script:
+  - make test
+
+jobs:
+  include:
+    - stage: test
+      go: '1.11.5'
+      install: skip
+      script:
+        - make test
+    - stage: deploy
+      go: '1.11.5'
+      install:
+        - make install
+        - env
+      script:
+        - make build
+        - env ./.ci/build_push_docker.sh

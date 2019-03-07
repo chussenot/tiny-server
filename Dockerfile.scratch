@@ -1,3 +1,5 @@
+LABEL version="0.1" maintainer="Clement Hussenot <chussenot@gmail.com>"
+
 FROM scratch
 ADD main /
 EXPOSE 80
