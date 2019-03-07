@@ -3,9 +3,11 @@ VERSION=0.1
 
 build:
 	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+package:
 	docker build -t ${IMAGE} -f Dockerfile.scratch .
 
-run: build
+run: build package
 	docker run -it -p 1323:80 ${IMAGE}
 
 install:
